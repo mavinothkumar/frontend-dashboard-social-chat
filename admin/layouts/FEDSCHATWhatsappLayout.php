@@ -110,7 +110,14 @@ if ( ! class_exists('FEDSCHATWhatsappLayout')) {
             if ($this->is_enable()) {
                 $users = fed_get_data('whatsapp.users.details', $this->settings, false);
                 if ($users) {
-                    $users = unserialize($users);
+                    $users        = unserialize($users);
+                    $announcement = fed_get_data('whatsapp.layout.body.title', $this->settings,
+                        __('The team typically replies in a few minutes',
+                            'frontend-dashboard-social-chat'));
+                    $footer_title = fed_get_data('whatsapp.layout.footer.title',
+                        $this->settings,
+                        __('Call us to +9999999999 from 0:00hrs to 24:00hrs',
+                            'frontend-dashboard-social-chat'));
                     ?>
                     <div class="bc_fed" id="fed_wa_container">
                         <div class="fed_wa_container fed_hide">
@@ -137,11 +144,11 @@ if ( ! class_exists('FEDSCHATWhatsappLayout')) {
                             </div>
                             <div class="fed_wa_body_container">
                                 <div class="fed_wa_body_wrapper">
-                                    <div class="fed_wa_body_announcement">
-                                        <?php echo fed_get_data('whatsapp.layout.body.title', $this->settings,
-                                            __('The team typically replies in a few minutes',
-                                                'frontend-dashboard-social-chat')); ?>
-                                    </div>
+                                    <?php if ( ! empty($announcement)) { ?>
+                                        <div class="fed_wa_body_announcement">
+                                            <?php echo $announcement; ?>
+                                        </div>
+                                    <?php } ?>
                                     <div class="fed_wa_body_users">
                                         <?php
                                         foreach ($users as $index => $user) {
@@ -178,14 +185,13 @@ if ( ! class_exists('FEDSCHATWhatsappLayout')) {
                                         ?>
                                     </div>
                                 </div>
-                                <div class="fed_wa_body_footer_wrapper">
-                                    <div class="fed_wa_body_footer_item">
-                                        <?php echo fed_get_data('whatsapp.layout.footer.title',
-                                            $this->settings,
-                                            __('Call us to +9999999999 from 0:00hrs to 24:00hrs',
-                                                'frontend-dashboard-social-chat')); ?>
+                                <?php if ( ! empty($footer_title)) { ?>
+                                    <div class="fed_wa_body_footer_wrapper">
+                                        <div class="fed_wa_body_footer_item">
+                                            <?php echo $footer_title ?>
+                                        </div>
                                     </div>
-                                </div>
+                                <?php } ?>
                             </div>
 
                         </div>
