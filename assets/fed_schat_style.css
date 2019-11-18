@@ -1,0 +1,260 @@
+
+#fed_wa_container {
+    width: 300px;
+    min-height: 400px;
+    border-radius: 0 0 5px 5px;
+    position: fixed;
+    bottom: 95px;
+    right: 30px;
+}
+
+.fed_hide {
+    display: none !important;
+}
+
+.fed_wa_container {
+    min-height: 400px;
+}
+
+.fed_wa_user_status {
+    width: 15px;
+    height: 15px;
+    border-radius: 40px;
+}
+
+.fed_wa_user_status.offline {
+    background: gray;
+}
+
+.fed_wa_body_user_status {
+    display: flex;
+    align-items: center;
+}
+
+.fed_wa_body_user_status_message {
+    font-size: 11px;
+    padding-top: 5px
+}
+
+
+.fed_wa_body_wrapper {
+    height: 350px;
+    overflow-y: auto;
+    background: white;
+}
+
+.fed_wa_body_footer_wrapper {
+    padding: 10px 5px;
+}
+
+.fed_wa_body_footer_item {
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.fed_wa_footer_chat_container {
+    border-radius: 20px;
+    width: 230px;
+    display: flex;
+    padding: 5px 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.fed_wa_footer_chat_logo {
+    margin-right: 10px;
+}
+
+.fed_wa_footer_wrapper {
+    position: absolute;
+    bottom: -75px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.fed_wa_close_x {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 60px;
+    width: 60px;
+    font-size: 29px;
+    font-weight: bold;
+}
+
+.fed_wa_close_x img {
+    width: 40px;
+    height: 40px;
+}
+
+.fed_wa_close {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.fed_wa_header_wrapper {
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-content: center;
+}
+
+.fed_wa_header_title_wrapper {
+    padding-left: 20px;
+}
+
+.fed_wa_footer_wrapper .fed_wa_footer_logo img {
+    width: 60px;
+    height: 60px;
+}
+
+.fed_wa_container {
+    box-shadow: 0 10px 10px 4px rgba(0, 0, 0, .04);
+    -webkit-box-shadow: 0 10px 10px 4px rgba(0, 0, 0, .04);
+    -moz-box-shadow: 0 10px 10px 4px rgba(0, 0, 0, .04);
+
+}
+
+.fed_wa_header_title {
+    font-size: 18px;
+    padding-bottom: 5px;
+}
+
+.fed_wa_header_sub_title {
+    font-size: 14px;
+}
+
+.fed_wa_logo {
+    display: flex;
+    align-items: center;
+}
+
+.fed_wa_logo img,
+.fed_wa_footer_logo img {
+    width: 50px;
+    height: 50px;
+}
+
+.fed_wa_body_announcement {
+    padding: 2px;
+    font-size: 11px;
+    color: #033333;
+    background: #eee;
+    margin: 5px;
+    text-align: center;
+    border-radius: 40px;
+    font-weight: bold;
+}
+.fed_wa_user_link.inactive {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+}
+.fed_wa_body_user_sub_title {
+    font-size: 14px;
+}
+
+.fed_wa_body_user {
+    display: flex;
+    background: #eee;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.fed_wa_opened .fed_wa_body_user {
+    opacity: 1;
+    transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+}
+
+.fed_wa_body_user_text {
+    padding-left: 10px;
+    color: #033333;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.fed_wa_body_user_image {
+    display: flex;
+}
+
+.fed_wa_body_users {
+    margin: 10px;
+}
+
+.fed_wa_header_container {
+    min-height: 90px;
+    border-radius: 5px 5px 0 0;
+    line-height: 1.4;
+}
+
+.fed_wa_arrow_box {
+    position: absolute;
+    color: #033333;
+    background: #DDDDDD;
+    border: 2px solid #ffffff;
+    font-weight: bolder;
+    bottom: -55px;
+    right: 90px;
+}
+
+.fed_wa_arrow_box:after, .fed_wa_arrow_box:before {
+    left: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.fed_wa_arrow_box:after {
+    border-color: rgba(3, 51, 51, 0);
+    border-left-color: #DDDDDD;
+    border-width: 10px;
+    margin-top: -10px;
+}
+
+.fed_wa_arrow_box:before {
+    border-color: rgba(255, 255, 255, 0);
+    border-left-color: #ffffff;
+    border-width: 13px;
+    margin-top: -13px;
+}
+
+.fed_wa_arrow_box_text {
+    padding: 5px 20px;
+}
+
+.fed_whatsapp_user_list {
+    background: #f2f2f2;
+    margin: 5px !important;
+    padding: 10px;
+}
+
+.fed_whatsapp_delete_user_form {
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    border-radius: 30px;
+    background: #033333;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fed_wa_body_users a:link,
+.fed_wa_body_users > a,
+.fed_wa_body_users a:hover,
+.fed_wa_body_users a:active {
+    text-decoration: none;
+}
