@@ -3,7 +3,7 @@
  * Plugin Name: Frontend Dashboard Social Chat
  * Plugin URI: https://buffercode.com/plugin/frontend-dashboard-social-chat
  * Description: Frontend dashboard payment provides easy to do Payment in PayPal.
- * Version: 1.3
+ * Version: 3.0.0
  * Author: vinoth06
  * Author URI: https://buffercode.com/
  * License: GPLv2
@@ -22,7 +22,7 @@ if ( $fed_check && is_plugin_active( 'frontend-dashboard/frontend-dashboard.php'
 	/**
 	 * Version Number
 	 */
-	define( 'BC_FED_SCHAT_PLUGIN_VERSION', '1.3' );
+	define( 'BC_FED_SCHAT_PLUGIN_VERSION', '3.0.0' );
 	define( 'BC_FED_SCHAT_PLUGIN_VERSION_TYPE', 'FREE' );
 	define( 'BC_FED_SCHAT_PLUGIN_SLUG', 'frontend-dashboard-social-chat' );
 
