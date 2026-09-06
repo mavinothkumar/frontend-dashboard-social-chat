@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( ! class_exists( 'FEDSCHATWhatsappLayout' ) ) {
 	/**
 	 * Class FEDSCHATWhatsappLayout
@@ -7,7 +11,7 @@ if ( ! class_exists( 'FEDSCHATWhatsappLayout' ) ) {
 	class FEDSCHATWhatsappLayout {
 
 		/**
-		 * @var void
+		 * @var mixed
 		 */
 		public $settings;
 
@@ -20,74 +24,70 @@ if ( ! class_exists( 'FEDSCHATWhatsappLayout' ) ) {
 		}
 
 		/**
-		 * @param $css
+		 * @param string $css
 		 */
 		public function custom_css( $css ) {
 			$fed_colors     = get_option( 'fed_admin_setting_upl_color' );
-			$pbg_color      = fed_get_data( 'color.fed_upl_color_bg_color', $fed_colors, '#0AAAAA' );
+			$pbg_color      = fed_get_data( 'color.fed_upl_color_bg_color', $fed_colors, '#128C7E' );
 			$pbg_font_color = fed_get_data( 'color.fed_upl_color_bg_font_color', $fed_colors, '#FFFFFF' );
-			$sbg_color      = fed_get_data( 'color.fed_upl_color_sbg_color', $fed_colors, '#033333' );
+			$sbg_color      = fed_get_data( 'color.fed_upl_color_sbg_color', $fed_colors, '#075E54' );
 			$sbg_font_color = fed_get_data( 'color.fed_upl_color_sbg_font_color', $fed_colors, '#FFFFFF' );
 			?>
 			<style>
-				.fed_wa_user_status.online {
-					background: <?php echo $pbg_color; ?>;
+				:root {
+					--fed-wa-primary: <?php echo esc_attr( $pbg_color ); ?>;
+					--fed-wa-primary-text: <?php echo esc_attr( $pbg_font_color ); ?>;
+					--fed-wa-dark: <?php echo esc_attr( $sbg_color ); ?>;
+					--fed-wa-dark-text: <?php echo esc_attr( $sbg_font_color ); ?>;
+					--fed-wa-green: #25D366;
 				}
-				.fed_wa_body_user_status_message.active {
-					color: <?php echo $pbg_color; ?>;
-				}
-				.fed_wa_body_user_status_message.inactive {
-					color: <?php echo $sbg_color; ?>;
-				}
-				.fed_wa_body_footer_wrapper,
-				.fed_wa_footer_chat_container,
 				.fed_wa_header_container {
-					background: <?php echo $pbg_color; ?>;
-					color: <?php echo $pbg_font_color; ?>;
+					background: linear-gradient(135deg, var(--fed-wa-dark) 0%, var(--fed-wa-primary) 100%) !important;
+					color: var(--fed-wa-primary-text) !important;
 				}
-
+				.fed_wa_footer_chat_container {
+					background: var(--fed-wa-primary) !important;
+					color: var(--fed-wa-primary-text) !important;
+				}
 				.fed_wa_close {
-					background: <?php echo $sbg_color; ?>;
-				}
-
-				.fed_wa_body_user.active {
-					border-left: 3px solid<?php echo $pbg_color; ?>;
-					color: <?php echo $pbg_color; ?>;
-				}
-
-				.fed_wa_body_user.inactive {
-					border-left: 3px solid<?php echo $sbg_color; ?>;
-					color: <?php echo $sbg_color; ?>;
+					background: var(--fed-wa-dark) !important;
 				}
 			</style>
-
 			<?php
 		}
 
 		/**
-		 * @param $scripts
+		 * Enqueue Scripts & Styles
 		 */
 		public function scripts() {
 			if ( $this->is_enable() ) {
 				wp_enqueue_style(
-					'fed_schat_style', plugins_url( '/assets/fed_schat_style.css', BC_FED_SCHAT_PLUGIN ),
-					array(), BC_FED_SCHAT_PLUGIN_VERSION, 'all'
+					'fed_schat_style',
+					plugins_url( '/assets/fed_schat_style.css', BC_FED_SCHAT_PLUGIN ),
+					array(),
+					BC_FED_SCHAT_PLUGIN_VERSION,
+					'all'
 				);
 				wp_enqueue_style(
 					'fed_admin_font_awesome',
 					plugins_url( '/assets/frontend/css/fontawesome.css', BC_FED_PLUGIN ),
-					array(), BC_FED_PLUGIN_VERSION, 'all'
+					array(),
+					BC_FED_PLUGIN_VERSION,
+					'all'
 				);
 				wp_enqueue_style(
-					'fed_admin_font_awesome-shims', plugins_url(
-						'/assets/frontend/css/fontawesome-shims.css',
-						BC_FED_PLUGIN
-					),
-					array(), BC_FED_PLUGIN_VERSION, 'all'
+					'fed_admin_font_awesome-shims',
+					plugins_url( '/assets/frontend/css/fontawesome-shims.css', BC_FED_PLUGIN ),
+					array(),
+					BC_FED_PLUGIN_VERSION,
+					'all'
 				);
 				wp_enqueue_script(
-					'fed_schat_script', plugins_url( '/assets/fed_schat_script.js', BC_FED_SCHAT_PLUGIN ),
-					array( 'jquery' )
+					'fed_schat_script',
+					plugins_url( '/assets/fed_schat_script.js', BC_FED_SCHAT_PLUGIN ),
+					array( 'jquery' ),
+					BC_FED_SCHAT_PLUGIN_VERSION,
+					true
 				);
 			}
 		}
@@ -96,157 +96,160 @@ if ( ! class_exists( 'FEDSCHATWhatsappLayout' ) ) {
 		 * @return bool
 		 */
 		public function is_enable() {
-			$is_enable    = fed_get_data( 'whatsapp.settings.enable', $this->settings, false );
-			$user_allowed = fed_get_data(
-				'whatsapp.settings.users.allow', $this->settings,
-				array()
-			);
+			$this->settings = get_option( 'fed_social_chat_settings' );
+			$is_enable      = fed_get_data( 'whatsapp.settings.enable', $this->settings, false );
+			$user_allowed   = fed_get_data( 'whatsapp.settings.users.allow', $this->settings, array() );
+
 			if ( is_user_logged_in() ) {
 				$user_can = fed_is_current_user_role( $user_allowed );
 			} else {
 				$user_can = array_key_exists( 'unregistered', $user_allowed );
 			}
 
-			return $is_enable && $is_enable === 'Enable' && $user_can;
+			return ( 'Enable' === $is_enable && $user_can );
 		}
 
 		public function layout() {
-			if ( $this->is_enable() ) {
-				$users = fed_get_data( 'whatsapp.users.details', $this->settings, false );
-				if ( $users ) {
-					$users        = unserialize( $users );
-					$announcement = fed_get_data(
-						'whatsapp.layout.body.title', $this->settings,
-						__(
-							'The team typically replies in a few minutes',
-							'frontend-dashboard-social-chat'
-						)
-					);
-					$footer_title = fed_get_data(
-						'whatsapp.layout.footer.title',
-						$this->settings,
-						__(
-							'Call us to +9999999999 from 0:00hrs to 24:00hrs',
-							'frontend-dashboard-social-chat'
-						)
-					);
-					?>
-					<div class="bc_fed" id="fed_wa_container">
-						<div class="fed_wa_container fed_hide">
-							<div class="fed_wa_header_container">
-								<div class="fed_wa_header_wrapper">
-									<div class="fed_wa_logo">
-										<div class="fed_wa_logo_wrapper">
-											<i class="fa fa-whatsapp fa-3x"></i>
-										</div>
-									</div>
-									<div class="fed_wa_header_title_wrapper">
-										<div class="fed_wa_header_title">
-											<?php
-											echo fed_get_data(
-												'whatsapp.layout.header.title', $this->settings,
-												__( 'Start a Conversation', 'frontend-dashboard-social-chat' )
-											);
-												?>
-										</div>
-										<div class="fed_wa_header_sub_title">
-											<?php
-											echo fed_get_data(
-												'whatsapp.layout.header.sub_title',
-												$this->settings,
-												__(
-													'This will show in the Top Header Title of the Chat Window',
-													'frontend-dashboard-social-chat'
-												)
-											);
-													?>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="fed_wa_body_container">
-								<div class="fed_wa_body_wrapper">
-									<?php if ( ! empty( $announcement ) ) { ?>
-										<div class="fed_wa_body_announcement">
-											<?php echo $announcement; ?>
-										</div>
-									<?php } ?>
-									<div class="fed_wa_body_users">
-										<?php
-										foreach ( $users as $index => $user ) {
-											$name   = fed_get_data( 'name', $user );
-											$number = fed_get_data( 'number', $user );
-											$status = fed_get_data( 'status', $user );
-											$role   = fed_get_data( 'role', $user );
-											$url    = $status === 'active' ? 'https://web.whatsapp.com/send?phone=' . $number : '#';
+			if ( ! $this->is_enable() ) {
+				return;
+			}
 
-											?>
-											<a class="fed_wa_user_link <?php echo $status; ?>" target="_blank"
-											   href="<?php echo $url; ?>">
-												<div class="fed_wa_body_user <?php echo $status; ?>">
+			$users_raw = fed_get_data( 'whatsapp.users.details', $this->settings, false );
+			$users     = array();
 
-													<div class="fed_wa_body_user_image">
-														<i class="fa fa-user-circle fa-3x <?php echo $status === 'active' ? 'active' : 'inactive'; ?>"></i>
-													</div>
-													<div class="fed_wa_body_user_text">
-														<div class="fed_wa_body_user_title">
-															<?php echo $name; ?>
-														</div>
-														<div class="fed_wa_body_user_sub_title">
-															<?php echo $role; ?>
-														</div>
-														<div class="fed_wa_body_user_status_message <?php echo $status; ?>">
-															<?php echo strtoupper( $status ); ?>
-														</div>
-													</div>
-
-												</div>
-											</a>
-											<?php
-										}
-										?>
-									</div>
-								</div>
-								<?php if ( ! empty( $footer_title ) ) { ?>
-									<div class="fed_wa_body_footer_wrapper">
-										<div class="fed_wa_body_footer_item">
-											<?php echo $footer_title; ?>
-										</div>
-									</div>
-								<?php } ?>
-							</div>
-
-						</div>
-						<div class="fed_wa_footer_container">
-							<div class="fed_wa_footer_wrapper">
-								<div class="fed_wa_close fed_hide">
-									<div class="fed_wa_close_x ">
-										<i class="fa fa-times fa-2x"></i>
-									</div>
-								</div>
-								<div class="fed_wa_footer_chat">
-									<div class="fed_wa_footer_chat_container">
-										<div class="fed_wa_footer_chat_logo">
-											<i class="fa fa-whatsapp fa-2x"></i>
-										</div>
-										<div class="fed_wa_footer_chat_message">
-											<?php
-											echo fed_get_data(
-												'whatsapp.layout.chat.title', $this->settings,
-												__( 'How may I help you', 'frontend-dashboard-social-chat' )
-											);
-												?>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<?php
+			if ( ! empty( $users_raw ) ) {
+				if ( is_array( $users_raw ) ) {
+					$users = $users_raw;
+				} elseif ( is_string( $users_raw ) ) {
+					$unserialized = @unserialize( $users_raw, array( 'allowed_classes' => false ) );
+					if ( is_array( $unserialized ) ) {
+						$users = $unserialized;
+					}
 				}
 			}
+
+			if ( empty( $users ) ) {
+				return;
+			}
+
+			$announcement = fed_get_data(
+				'whatsapp.layout.body.title',
+				$this->settings,
+				__( 'The team typically replies in a few minutes', 'frontend-dashboard-social-chat' )
+			);
+			$footer_title = fed_get_data(
+				'whatsapp.layout.footer.title',
+				$this->settings,
+				''
+			);
+			$chat_prompt = fed_get_data(
+				'whatsapp.layout.chat.title',
+				$this->settings,
+				__( 'How may I help you?', 'frontend-dashboard-social-chat' )
+			);
+			$header_title = fed_get_data(
+				'whatsapp.layout.header.title',
+				$this->settings,
+				__( 'Start a Conversation', 'frontend-dashboard-social-chat' )
+			);
+			$header_sub_title = fed_get_data(
+				'whatsapp.layout.header.sub_title',
+				$this->settings,
+				__( 'Click one of our team members below to chat on WhatsApp.', 'frontend-dashboard-social-chat' )
+			);
+			?>
+			<div class="bc_fed fed_schat_widget_root" id="fed_wa_container">
+				
+				<!-- Popup Chat Box Window -->
+				<div class="fed_wa_container fed_hide" id="fed_wa_box">
+					<div class="fed_wa_header_container">
+						<div class="fed_wa_header_top">
+							<div class="fed_wa_header_brand">
+								<div class="fed_wa_logo_badge">
+									<i class="fab fa-whatsapp"></i>
+								</div>
+								<div>
+									<h4 class="fed_wa_header_title"><?php echo esc_html( $header_title ); ?></h4>
+									<p class="fed_wa_header_sub_title"><?php echo esc_html( $header_sub_title ); ?></p>
+								</div>
+							</div>
+							<button type="button" class="fed_wa_box_close" id="fed_wa_box_close" aria-label="Close">
+								<i class="fas fa-times"></i>
+							</button>
+						</div>
+					</div>
+
+					<div class="fed_wa_body_container">
+						<?php if ( ! empty( $announcement ) ) : ?>
+							<div class="fed_wa_announcement_pill">
+								<i class="fas fa-bolt"></i> <?php echo esc_html( $announcement ); ?>
+							</div>
+						<?php endif; ?>
+
+						<div class="fed_wa_agents_list">
+							<?php
+							foreach ( $users as $index => $user ) {
+								$name   = esc_html( fed_get_data( 'name', $user, '' ) );
+								$number = preg_replace( '/[^0-9]/', '', fed_get_data( 'number', $user, '' ) );
+								$status = fed_get_data( 'status', $user, 'active' );
+								$role   = esc_html( fed_get_data( 'role', $user, '' ) );
+								$is_online = ( 'active' === $status );
+								$url    = $is_online ? 'https://wa.me/' . $number : '#';
+								?>
+								<a class="fed_wa_agent_card <?php echo $is_online ? 'online' : 'offline'; ?>" <?php echo $is_online ? 'target="_blank" rel="noopener noreferrer"' : ''; ?> href="<?php echo esc_url( $url ); ?>">
+									<div class="fed_wa_agent_avatar_wrap">
+										<div class="fed_wa_agent_avatar">
+											<i class="fas fa-headset"></i>
+										</div>
+										<span class="fed_wa_status_indicator <?php echo $is_online ? 'online' : 'offline'; ?>"></span>
+									</div>
+									<div class="fed_wa_agent_info">
+										<div class="fed_wa_agent_name"><?php echo $name; ?></div>
+										<?php if ( ! empty( $role ) ) : ?>
+											<div class="fed_wa_agent_role"><?php echo $role; ?></div>
+										<?php endif; ?>
+										<div class="fed_wa_agent_status_text <?php echo $is_online ? 'online' : 'offline'; ?>">
+											<?php echo $is_online ? esc_html__( 'Online - Instant Reply', 'frontend-dashboard-social-chat' ) : esc_html__( 'Offline', 'frontend-dashboard-social-chat' ); ?>
+										</div>
+									</div>
+									<div class="fed_wa_agent_action">
+										<div class="fed_wa_chat_icon_btn">
+											<i class="fab fa-whatsapp"></i>
+										</div>
+									</div>
+								</a>
+							<?php } ?>
+						</div>
+					</div>
+
+					<?php if ( ! empty( $footer_title ) ) : ?>
+						<div class="fed_wa_footer_notice">
+							<i class="fas fa-info-circle"></i> <?php echo esc_html( $footer_title ); ?>
+						</div>
+					<?php endif; ?>
+				</div>
+
+				<!-- Floating Action Trigger (Bottom Button) -->
+				<div class="fed_wa_footer_container">
+					<div class="fed_wa_floating_trigger" id="fed_wa_trigger">
+						<?php if ( ! empty( $chat_prompt ) ) : ?>
+							<div class="fed_wa_prompt_bubble" id="fed_wa_prompt_bubble">
+								<span><?php echo esc_html( $chat_prompt ); ?></span>
+								<div class="fed_wa_prompt_arrow"></div>
+							</div>
+						<?php endif; ?>
+						<button type="button" class="fed_wa_floating_btn" aria-label="Open WhatsApp Chat">
+							<i class="fab fa-whatsapp"></i>
+							<span class="fed_wa_btn_pulse"></span>
+						</button>
+					</div>
+				</div>
+
+			</div>
+			<?php
 		}
 	}
 
 	new FEDSCHATWhatsappLayout();
 }
+

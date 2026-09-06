@@ -2,13 +2,13 @@
 /**
  * Plugin Name: Frontend Dashboard Social Chat
  * Plugin URI: https://buffercode.com/plugin/frontend-dashboard-social-chat
- * Description: Frontend dashboard payment provides easy to do Payment in PayPal.
+ * Description: Frontend Dashboard Social Chat enables seamless WhatsApp customer support with multi-agent management.
  * Version: 3.0.0
  * Author: vinoth06
  * Author URI: https://buffercode.com/
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: frontend-dashboard
+ * Text Domain: frontend-dashboard-social-chat
  * Domain Path: /languages
  */
 
@@ -48,11 +48,10 @@ if ( $fed_check && is_plugin_active( 'frontend-dashboard/frontend-dashboard.php'
 	 */
 	define( 'BC_FED_SCHAT_PLUGIN_DIR', untrailingslashit( dirname( BC_FED_SCHAT_PLUGIN ) ) );
 
-
 	require_once BC_FED_SCHAT_PLUGIN_DIR . '/fed_schat_autoload.php';
 } else {
 	/**
-	 * Global Admin Notification for Custom Post Taxonomies
+	 * Global Admin Notification for Social Chat
 	 */
 	function fed_global_admin_notification_social_chat() {
 		?>
@@ -61,7 +60,7 @@ if ( $fed_check && is_plugin_active( 'frontend-dashboard/frontend-dashboard.php'
 				<b>
 					<?php
 					_e(
-						'Please install <a href="https://buffercode.com/plugin/frontend-dashboard">Frontend Dashboard</a> to use this plugin [Frontend Dashboard Payment Pro]',
+						'Please install <a href="https://buffercode.com/plugin/frontend-dashboard">Frontend Dashboard</a> to use this plugin [Frontend Dashboard Social Chat]',
 						'frontend-dashboard-social-chat'
 					);
 					?>
