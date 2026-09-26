@@ -1,43 +1,46 @@
-=== Frontend Dashboard Social Chat===
+=== Frontend Dashboard Social Chat ===
 Contributors: vinoth06, buffercode
-Tags: dashboard, frontend dashboard, payment, paypal
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7DHAEMST475BY
+Tags: dashboard, frontend dashboard, whatsapp, chat, live chat, support, customer support, floating chat
+Donate link: https://www.paypal.com/paypalme2/buffercode
 Requires at least: 5.8
-Tested up to: 7.1
+Tested up to: 6.7
+Requires PHP: 7.4
 Stable tag: 3.0.0
-License: GPL V3
-License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Frontend Dashboard payment allows user to pay the subscription or one time payment via PayPal.
+Frontend Dashboard Social Chat connects dashboard users directly with support representatives via WhatsApp and floating chat widgets.
 
 == Description ==
+
 > #### Notice
-> This is a Add-on plugin of [Frontend Dashboard](https://wordpress.org/plugins/frontend-dashboard/), So please install [Frontend Dashboard](https://buffercode.com/plugin/frontend-dashboard) to use this plugin **
+> This is a free add-on plugin for [Frontend Dashboard](https://buffercode.com/plugin/frontend-dashboard). Please install and activate Frontend Dashboard (v3.0.0+) to use this plugin.
 
-Frontend Dashboard Social Chat WordPress plugin makes users to connect the website support or technical teams via WhatsApp.
+**Frontend Dashboard Social Chat** enables fast, direct communication between frontend dashboard users and support or technical team members via WhatsApp.
 
-= Restrict Users =
-
-Admin can allow the respective user roles to have the WhatsApp chat button to initiate the chat.
-
-= Representative =
-
-Add any number of representative to the website to answer the WhatsApp chat.
-
-= Layout =
-
-Customise the layout content as per your website requirement
-
-= Theme =
-The Frontend Dashboard Social Chat is completely supportive with the primary and secondary color of the Frontend Dashboard.
+### Features
+* **Multi-Agent Representatives**: Add multiple support representatives with individual WhatsApp numbers, names, and titles.
+* **Role-Based Visibility**: Restrict chat widget visibility to specific logged-in user roles or display universally.
+* **Custom Layouts & Prompts**: Customize pre-filled greeting messages, agent descriptions, and floating button positions.
+* **Theme Matching**: Seamlessly blends with the Frontend Dashboard theme colors and dark/light styling.
+* **Mobile Optimized**: Responsive chat popup designed for mobile, tablet, and desktop screens.
 
 == Installation ==
-1. Upload the “frontend-dashboard-social-chat” directory to the plugins directory.
-2. Go to the plugins setting page and activate “Frontend Dashboard Social Chat”
-3. Go to Frontend Dashboard | Social Chat
-4. Customize it.
+
+1. Upload the `frontend-dashboard-social-chat` directory to the `/wp-content/plugins/` directory.
+2. Activate the plugin through the 'Plugins' menu in WordPress.
+3. Ensure **Frontend Dashboard** is also installed and active.
+4. Navigate to **Frontend Dashboard > Social Chat** to configure representatives and settings.
+5. Save settings.
 
 == Changelog ==
+
+= 3.0.0 =
+* Major Release: Full compatibility and deep integration with Frontend Dashboard 3.0.0 App Shell.
+* Updated chat window styling and responsive mobile layout.
+* Enhanced role permissions and agent management.
+* Security: Added nonce verification on all configuration actions.
+* Full compatibility with WordPress 6.7 and PHP 8.1 / 8.2 / 8.3.
 
 = 1.3 [19-Apr-2020] =
 * Bug: Mobile device CSS issue
@@ -53,10 +56,12 @@ The Frontend Dashboard Social Chat is completely supportive with the primary and
 
 == Upgrade Notice ==
 
+= 3.0.0 =
+Major release: Full integration with Frontend Dashboard 3.0.0, updated styling, and WordPress 6.7 compatibility.
+
 == Screenshots ==
 1. Frontend Dashboard Social Chat Window
 2. Frontend Dashboard Social Chat Initial Button
 3. Frontend Dashboard Social Common Settings
 4. Frontend Dashboard Social User Settings
 5. Frontend Dashboard Social Layout Settings
-
