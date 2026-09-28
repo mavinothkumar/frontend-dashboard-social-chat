@@ -1,10 +1,10 @@
 === Frontend Dashboard Social Chat ===
 Contributors: vinoth06, buffercode
-Tags: dashboard, frontend dashboard, whatsapp, chat, live chat, support, customer support, floating chat
+Tags: frontend dashboard, whatsapp, live chat, customer support, floating chat
 Donate link: https://www.paypal.com/paypalme2/buffercode
-Requires at least: 5.8
-Tested up to: 6.7
-Requires PHP: 7.4
+Requires at least: 6.1
+Tested up to: 7.1
+Requires PHP: 8.0
 Stable tag: 3.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -40,19 +40,19 @@ Frontend Dashboard Social Chat connects dashboard users directly with support re
 * Updated chat window styling and responsive mobile layout.
 * Enhanced role permissions and agent management.
 * Security: Added nonce verification on all configuration actions.
-* Full compatibility with WordPress 6.7 and PHP 8.1 / 8.2 / 8.3.
+* Full compatibility with WordPress 6.7 and PHP 8.0 / 8.1 / 8.2 / 8.3.
 
-= 1.3 [19-Apr-2020] =
-* Bug: Mobile device CSS issue
+= 1.3 =
+* Fix: Mobile device CSS adjustments.
 
-= 1.2 [15-Feb-2020] =
-* Bug: Mobile device CSS issue
+= 1.2 =
+* Fix: Mobile device CSS adjustments.
 
-= 1.1 [21-Nov-2019] =
-* Bug: Unnecessary body background color update
+= 1.1 =
+* Fix: Body background color issue.
 
 = 1.0 =
-* Public release
+* Public release.
 
 == Upgrade Notice ==
 
