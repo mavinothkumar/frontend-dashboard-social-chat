@@ -33,6 +33,8 @@ Frontend Dashboard Social Chat connects dashboard users directly with support re
 4. Navigate to **Frontend Dashboard > Social Chat** to configure representatives and settings.
 5. Save settings.
 
+For more documentation and FAQs, visit [https://faq.frontenddashboard.com/addons-free/social-chat/overview/](https://faq.frontenddashboard.com/addons-free/social-chat/overview/).
+
 == Changelog ==
 
 = 3.0.0 =
@@ -42,17 +44,8 @@ Frontend Dashboard Social Chat connects dashboard users directly with support re
 * Security: Added nonce verification on all configuration actions.
 * Full compatibility with WordPress 6.7 and PHP 8.0 / 8.1 / 8.2 / 8.3.
 
-= 1.3 =
-* Fix: Mobile device CSS adjustments.
-
-= 1.2 =
-* Fix: Mobile device CSS adjustments.
-
-= 1.1 =
-* Fix: Body background color issue.
-
-= 1.0 =
-* Public release.
+More Changelogs:
+https://faq.frontenddashboard.com/changelog/social-chat/
 
 == Upgrade Notice ==
 
