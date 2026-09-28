@@ -189,10 +189,10 @@ if ( ! class_exists( 'FEDSCHATWhatsappLayout' ) ) {
 						<div class="fed_wa_agents_list">
 							<?php
 							foreach ( $users as $index => $user ) {
-								$name   = esc_html( fed_get_data( 'name', $user, '' ) );
+								$name   = fed_get_data( 'name', $user, '' );
 								$number = preg_replace( '/[^0-9]/', '', fed_get_data( 'number', $user, '' ) );
 								$status = fed_get_data( 'status', $user, 'active' );
-								$role   = esc_html( fed_get_data( 'role', $user, '' ) );
+								$role   = fed_get_data( 'role', $user, '' );
 								$is_online = ( 'active' === $status );
 								$url    = $is_online ? 'https://wa.me/' . $number : '#';
 								?>
@@ -204,9 +204,9 @@ if ( ! class_exists( 'FEDSCHATWhatsappLayout' ) ) {
 										<span class="fed_wa_status_indicator <?php echo $is_online ? 'online' : 'offline'; ?>"></span>
 									</div>
 									<div class="fed_wa_agent_info">
-										<div class="fed_wa_agent_name"><?php echo $name; ?></div>
+										<div class="fed_wa_agent_name"><?php echo esc_html( $name ); ?></div>
 										<?php if ( ! empty( $role ) ) : ?>
-											<div class="fed_wa_agent_role"><?php echo $role; ?></div>
+											<div class="fed_wa_agent_role"><?php echo esc_html( $role ); ?></div>
 										<?php endif; ?>
 										<div class="fed_wa_agent_status_text <?php echo $is_online ? 'online' : 'offline'; ?>">
 											<?php echo $is_online ? esc_html__( 'Online - Instant Reply', 'frontend-dashboard-social-chat' ) : esc_html__( 'Offline', 'frontend-dashboard-social-chat' ); ?>

@@ -5,11 +5,11 @@ Donate link: https://www.paypal.com/paypalme2/buffercode
 Requires at least: 6.1
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 3.0.0
+Stable tag: 3.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Frontend Dashboard Social Chat connects dashboard users directly with support representatives via WhatsApp and floating chat widgets.
+Connect dashboard users directly with support representatives via WhatsApp and floating chat widgets.
 
 == Description ==
 
@@ -37,6 +37,9 @@ For more documentation and FAQs, visit [https://faq.frontenddashboard.com/addons
 
 == Changelog ==
 
+= 3.0.1 =
+* Fix: WordPress.org plugin review and security compliance improvements.
+
 = 3.0.0 =
 * Major Release: Full compatibility and deep integration with Frontend Dashboard 3.0.0 App Shell.
 * Updated chat window styling and responsive mobile layout.
@@ -48,6 +51,9 @@ More Changelogs:
 https://faq.frontenddashboard.com/changelog/social-chat/
 
 == Upgrade Notice ==
+
+= 3.0.1 =
+Minor update: Security escaping and WordPress standards compliance fixes.
 
 = 3.0.0 =
 Major release: Full integration with Frontend Dashboard 3.0.0, updated styling, and WordPress 6.7 compatibility.

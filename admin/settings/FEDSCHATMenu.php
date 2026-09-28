@@ -21,8 +21,8 @@ if ( ! class_exists( 'FEDSCHATMenu' ) ) {
 		 */
 		public function menu( $menu ) {
 			$menu['social_chat'] = array(
-				'page_title' => __( 'Social Chat', BC_FED_SCHAT_PLUGIN_SLUG ),
-				'menu_title' => __( 'Social Chat', BC_FED_SCHAT_PLUGIN_SLUG ),
+				'page_title' => __( 'Social Chat', 'frontend-dashboard-social-chat' ),
+				'menu_title' => __( 'Social Chat', 'frontend-dashboard-social-chat' ),
 				'capability' => 'manage_options',
 				'callback'   => array( $this, 'main_menu' ),
 				'position'   => 30,
@@ -30,6 +30,7 @@ if ( ! class_exists( 'FEDSCHATMenu' ) ) {
 
 			return $menu;
 		}
+
 
 		public function main_menu() {
 			$menus = apply_filters(
@@ -162,9 +163,9 @@ if ( ! class_exists( 'FEDSCHATMenu' ) ) {
 									$active_weight = $is_active ? 'font-weight: 700;' : 'font-weight: 500;';
 									$active_icon   = $is_active ? 'color: #16a34a;' : 'color: #94a3b8;';
 									?>
-									<a href="<?php echo esc_url( $sub_url ); ?>" style="display: flex; align-items: center; justify-content: space-between; padding: 11px 14px; border-radius: 8px; font-size: 13.5px; text-decoration: none; border: 1px solid transparent; transition: all 0.15s ease; <?php echo $active_bg; ?> <?php echo $active_weight; ?>">
+									<a href="<?php echo esc_url( $sub_url ); ?>" style="display: flex; align-items: center; justify-content: space-between; padding: 11px 14px; border-radius: 8px; font-size: 13.5px; text-decoration: none; border: 1px solid transparent; transition: all 0.15s ease; <?php echo esc_attr( $active_bg ); ?> <?php echo esc_attr( $active_weight ); ?>">
 										<span style="display: flex; align-items: center; gap: 10px;">
-											<i class="<?php echo esc_attr( $sub_menu['icon'] ); ?>" style="<?php echo $active_icon; ?> font-size: 14px; width: 18px; text-align: center;"></i>
+											<i class="<?php echo esc_attr( $sub_menu['icon'] ); ?>" style="<?php echo esc_attr( $active_icon ); ?> font-size: 14px; width: 18px; text-align: center;"></i>
 											<?php echo esc_html( $sub_menu['name'] ); ?>
 										</span>
 										<?php if ( $is_active ) : ?>
@@ -236,10 +237,12 @@ if ( ! class_exists( 'FEDSCHATMenu' ) ) {
 		public function plugin_versions( $version ) {
 			return array_merge(
 				$version, array(
-					'social_chat' => sprintf( __( 'Social Chat (%s)', BC_FED_SCHAT_PLUGIN_SLUG ), BC_FED_SCHAT_PLUGIN_VERSION ),
+					/* translators: %s: Plugin version */
+					'social_chat' => sprintf( __( 'Social Chat (%s)', 'frontend-dashboard-social-chat' ), BC_FED_SCHAT_PLUGIN_VERSION ),
 				)
 			);
 		}
+
 	}
 
 	new FEDSCHATMenu();

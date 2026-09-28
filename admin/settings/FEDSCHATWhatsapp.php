@@ -22,8 +22,7 @@ if ( ! class_exists('FEDSCHATWhatsapp')) {
         public function authorize()
         {
             if ( ! fed_is_admin()) {
-                wp_die(__('Sorry! You are not allowed to do this action | Error: FEDSCHAT|Admin|Settings|FEDSCHATWhatsapp@authorize',
-                    BC_FED_SCHAT_PLUGIN_SLUG));
+                wp_die( esc_html__( 'Sorry! You are not allowed to do this action | Error: FEDSCHAT|Admin|Settings|FEDSCHATWhatsapp@authorize', 'frontend-dashboard-social-chat' ) );
             }
 
         }
@@ -44,7 +43,7 @@ if ( ! class_exists('FEDSCHATWhatsapp')) {
                 $roles
             );
 
-            echo fed_loader();
+            echo fed_loader(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             ?>
             <div class="bc_fed fed_whatsapp_settings_manager" style="font-family: inherit;">
                 <form class="fed_ajax" method="post" action="<?php echo esc_url( fed_get_ajax_form_action( 'fed_ajax_request' ) . '&fed_action_hook=FEDSCHATWhatsapp@settings_update' ); ?>">
@@ -100,7 +99,7 @@ if ( ! class_exists('FEDSCHATWhatsapp')) {
                             </p>
 
                             <?php
-                            echo fed_user_role_checkboxes(
+                            echo fed_user_role_checkboxes( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                 'settings[users][allow]',
                                 $allowed_roles,
                                 '4',
@@ -131,7 +130,7 @@ if ( ! class_exists('FEDSCHATWhatsapp')) {
             $body_title       = fed_get_data( 'whatsapp.layout.body.title', $this->settings, __( 'The team typically replies in a few minutes', 'frontend-dashboard-social-chat' ) );
             $footer_title     = fed_get_data( 'whatsapp.layout.footer.title', $this->settings, '' );
 
-            echo fed_loader();
+            echo fed_loader(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             ?>
             <div class="bc_fed fed_whatsapp_layout_manager" style="font-family: inherit;">
                 <form class="fed_ajax" method="post" action="<?php echo esc_url( fed_get_ajax_form_action( 'fed_ajax_request' ) . '&fed_action_hook=FEDSCHATWhatsapp@layout_update' ); ?>">
@@ -326,7 +325,7 @@ if ( ! class_exists('FEDSCHATWhatsapp')) {
                 }
             }
 
-            echo fed_loader();
+            echo fed_loader(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             ?>
             <div class="bc_fed fed_whatsapp_users_manager" style="font-family: inherit;">
                 <div class="fed_whatsapp_users_list_container">
@@ -354,10 +353,10 @@ if ( ! class_exists('FEDSCHATWhatsapp')) {
                             <?php
                             if ( ! empty( $users ) ) {
                                 foreach ( $users as $index => $user ) {
-                                    $name   = esc_attr( fed_get_data( 'name', $user, '' ) );
-                                    $number = esc_attr( fed_get_data( 'number', $user, '' ) );
+                                    $name   = fed_get_data( 'name', $user, '' );
+                                    $number = fed_get_data( 'number', $user, '' );
                                     $status = fed_get_data( 'status', $user, 'active' );
-                                    $role   = esc_attr( fed_get_data( 'role', $user, '' ) );
+                                    $role   = fed_get_data( 'role', $user, '' );
                                     $is_active = ( $status === 'active' );
                                     ?>
                                     <div class="fed_whatsapp_user_card fed_whatsapp_user_list" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); transition: all 0.2s ease; position: relative;">
@@ -367,7 +366,7 @@ if ( ! class_exists('FEDSCHATWhatsapp')) {
                                                     <i class="fas fa-headset"></i>
                                                 </div>
                                                 <span style="font-weight: 700; font-size: 14px; color: #1e293b;">
-                                                    <?php echo ! empty( $name ) ? $name : esc_html__( 'New Support Agent', 'frontend-dashboard-social-chat' ); ?>
+                                                    <?php echo ! empty( $name ) ? esc_html( $name ) : esc_html__( 'New Support Agent', 'frontend-dashboard-social-chat' ); ?>
                                                 </span>
                                             </div>
                                             <button type="button" class="fed_whatsapp_delete_user_form" title="<?php esc_attr_e( 'Remove Agent', 'frontend-dashboard-social-chat' ); ?>" style="background: #fee2e2; color: #ef4444; border: 1px solid #fecaca; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s ease;">
@@ -380,14 +379,14 @@ if ( ! class_exists('FEDSCHATWhatsapp')) {
                                                 <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 6px;">
                                                     <?php esc_html_e( 'Agent Name', 'frontend-dashboard-social-chat' ); ?> <span style="color: #ef4444;">*</span>
                                                 </label>
-                                                <input type="text" name="user[<?php echo esc_attr( $index ); ?>][name]" value="<?php echo $name; ?>" placeholder="<?php esc_attr_e( 'e.g. John Doe', 'frontend-dashboard-social-chat' ); ?>" class="form-control" style="width: 100%; border-radius: 8px; border: 1px solid #cbd5e1; padding: 8px 12px; font-size: 13.5px;" required />
+                                                <input type="text" name="user[<?php echo esc_attr( $index ); ?>][name]" value="<?php echo esc_attr( $name ); ?>" placeholder="<?php esc_attr_e( 'e.g. John Doe', 'frontend-dashboard-social-chat' ); ?>" class="form-control" style="width: 100%; border-radius: 8px; border: 1px solid #cbd5e1; padding: 8px 12px; font-size: 13.5px;" required />
                                             </div>
 
                                             <div class="form-group" style="margin: 0;">
                                                 <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 6px;">
                                                     <?php esc_html_e( 'WhatsApp Phone Number', 'frontend-dashboard-social-chat' ); ?> <span style="color: #ef4444;">*</span>
                                                 </label>
-                                                <input type="text" name="user[<?php echo esc_attr( $index ); ?>][number]" value="<?php echo $number; ?>" placeholder="<?php esc_attr_e( 'e.g. 15551234567 (with country code)', 'frontend-dashboard-social-chat' ); ?>" class="form-control" style="width: 100%; border-radius: 8px; border: 1px solid #cbd5e1; padding: 8px 12px; font-size: 13.5px;" required />
+                                                <input type="text" name="user[<?php echo esc_attr( $index ); ?>][number]" value="<?php echo esc_attr( $number ); ?>" placeholder="<?php esc_attr_e( 'e.g. 15551234567 (with country code)', 'frontend-dashboard-social-chat' ); ?>" class="form-control" style="width: 100%; border-radius: 8px; border: 1px solid #cbd5e1; padding: 8px 12px; font-size: 13.5px;" required />
                                                 <small style="color: #94a3b8; font-size: 11px; margin-top: 4px; display: block;"><?php esc_html_e( 'Numbers only, no spaces or + symbol.', 'frontend-dashboard-social-chat' ); ?></small>
                                             </div>
 
@@ -395,7 +394,7 @@ if ( ! class_exists('FEDSCHATWhatsapp')) {
                                                 <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 6px;">
                                                     <?php esc_html_e( 'Department / Role', 'frontend-dashboard-social-chat' ); ?>
                                                 </label>
-                                                <input type="text" name="user[<?php echo esc_attr( $index ); ?>][role]" value="<?php echo $role; ?>" placeholder="<?php esc_attr_e( 'e.g. Technical Support, Sales', 'frontend-dashboard-social-chat' ); ?>" class="form-control" style="width: 100%; border-radius: 8px; border: 1px solid #cbd5e1; padding: 8px 12px; font-size: 13.5px;" />
+                                                <input type="text" name="user[<?php echo esc_attr( $index ); ?>][role]" value="<?php echo esc_attr( $role ); ?>" placeholder="<?php esc_attr_e( 'e.g. Technical Support, Sales', 'frontend-dashboard-social-chat' ); ?>" class="form-control" style="width: 100%; border-radius: 8px; border: 1px solid #cbd5e1; padding: 8px 12px; font-size: 13.5px;" />
                                             </div>
 
                                             <div class="form-group" style="margin: 0;">

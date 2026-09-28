@@ -3,10 +3,10 @@
  * Plugin Name: Frontend Dashboard Social Chat
  * Plugin URI: https://buffercode.com/plugin/frontend-dashboard-social-chat
  * Description: Frontend Dashboard Social Chat enables seamless WhatsApp customer support with multi-agent management.
- * Version: 3.0.0
+ * Version: 3.0.1
  * Author: vinoth06
  * Author URI: https://buffercode.com/
- * License: GPLv2
+ * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: frontend-dashboard-social-chat
  * Domain Path: /languages
@@ -22,7 +22,7 @@ if ( $fed_check && is_plugin_active( 'frontend-dashboard/frontend-dashboard.php'
 	/**
 	 * Version Number
 	 */
-	define( 'BC_FED_SCHAT_PLUGIN_VERSION', '3.0.0' );
+	define( 'BC_FED_SCHAT_PLUGIN_VERSION', '3.0.1' );
 	define( 'BC_FED_SCHAT_PLUGIN_VERSION_TYPE', 'FREE' );
 	define( 'BC_FED_SCHAT_PLUGIN_SLUG', 'frontend-dashboard-social-chat' );
 
@@ -59,9 +59,10 @@ if ( $fed_check && is_plugin_active( 'frontend-dashboard/frontend-dashboard.php'
 			<p>
 				<b>
 					<?php
-					_e(
-						'Please install <a href="https://buffercode.com/plugin/frontend-dashboard">Frontend Dashboard</a> to use this plugin [Frontend Dashboard Social Chat]',
-						'frontend-dashboard-social-chat'
+					printf(
+						/* translators: %s: Link to Frontend Dashboard */
+						esc_html__( 'Please install %s to use this plugin [Frontend Dashboard Social Chat]', 'frontend-dashboard-social-chat' ),
+						'<a href="' . esc_url( 'https://buffercode.com/plugin/frontend-dashboard' ) . '">' . esc_html__( 'Frontend Dashboard', 'frontend-dashboard-social-chat' ) . '</a>'
 					);
 					?>
 				</b>
@@ -72,3 +73,4 @@ if ( $fed_check && is_plugin_active( 'frontend-dashboard/frontend-dashboard.php'
 
 	add_action( 'admin_notices', 'fed_global_admin_notification_social_chat' );
 }
+
