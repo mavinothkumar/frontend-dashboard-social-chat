@@ -35,6 +35,12 @@ Connect dashboard users directly with support representatives via WhatsApp and f
 
 For more documentation and FAQs, visit [https://faq.frontenddashboard.com/addons-free/social-chat/overview/](https://faq.frontenddashboard.com/addons-free/social-chat/overview/).
 
+== Screenshots ==
+1. Frontend Dashboard Social Layout
+2. Frontend Dashboard Social Frontend View
+3. Frontend Dashboard Social Support Settings
+
+
 == Changelog ==
 
 = 3.0.1 =
@@ -57,10 +63,3 @@ Minor update: Security escaping and WordPress standards compliance fixes.
 
 = 3.0.0 =
 Major release: Full integration with Frontend Dashboard 3.0.0, updated styling, and WordPress 6.7 compatibility.
-
-== Screenshots ==
-1. Frontend Dashboard Social Chat Window
-2. Frontend Dashboard Social Chat Initial Button
-3. Frontend Dashboard Social Common Settings
-4. Frontend Dashboard Social User Settings
-5. Frontend Dashboard Social Layout Settings
