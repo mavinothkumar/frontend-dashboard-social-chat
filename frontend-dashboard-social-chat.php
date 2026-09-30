@@ -3,7 +3,10 @@
  * Plugin Name: Frontend Dashboard Social Chat
  * Plugin URI: https://buffercode.com/plugin/frontend-dashboard-social-chat
  * Description: Frontend Dashboard Social Chat enables seamless WhatsApp customer support with multi-agent management.
- * Version: 3.0.1
+ * Version: 3.0.2
+ * Requires at least: 6.5
+ * Requires PHP: 8.0
+ * Requires Plugins: frontend-dashboard
  * Author: vinoth06
  * Author URI: https://buffercode.com/
  * License: GPLv2 or later
@@ -22,7 +25,7 @@ if ( $fed_check && is_plugin_active( 'frontend-dashboard/frontend-dashboard.php'
 	/**
 	 * Version Number
 	 */
-	define( 'BC_FED_SCHAT_PLUGIN_VERSION', '3.0.1' );
+	define( 'BC_FED_SCHAT_PLUGIN_VERSION', '3.0.2' );
 	define( 'BC_FED_SCHAT_PLUGIN_VERSION_TYPE', 'FREE' );
 	define( 'BC_FED_SCHAT_PLUGIN_SLUG', 'frontend-dashboard-social-chat' );
 
